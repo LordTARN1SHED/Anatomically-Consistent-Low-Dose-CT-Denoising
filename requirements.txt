@@ -1,0 +1,15 @@
+torch>=2.0
+torchvision>=0.15
+diffusers>=0.37.0
+transformers>=4.46
+accelerate>=1.13
+pydicom>=3.0
+scipy>=1.10
+scikit-image>=0.22
+opencv-python-headless>=4.8
+numpy>=1.26,<2.3
+matplotlib>=3.7
+pandas>=2.0
+tqdm>=4.65
+PyYAML>=6.0
+einops>=0.8

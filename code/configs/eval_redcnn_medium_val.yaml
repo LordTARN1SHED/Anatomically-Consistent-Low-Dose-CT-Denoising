@@ -1,0 +1,8 @@
+seed: 42
+checkpoint_path: outputs/redcnn_lidc_medium/checkpoints/redcnn_best.pt
+train_config_path: configs/train_redcnn_medium.yaml
+output_dir: outputs/redcnn_lidc_medium/eval_val
+num_samples: 256
+save_predictions: true
+compute_fid: false
+dataset_split: val

@@ -1,0 +1,72 @@
+seed: 42
+output_dir: outputs/egldm_tiny
+
+data:
+  mode: synthetic
+  image_size: 256
+  batch_size: 2
+  num_workers: 0
+  max_train_samples: 64
+  max_val_samples: 16
+
+  clean_dir: null
+  noisy_dir: null
+  dicom_root: null
+
+  hu_clip_min: -1000.0
+  hu_clip_max: 1000.0
+
+  lung_window_width: 1500.0
+  lung_window_level: -600.0
+  soft_window_width: 350.0
+  soft_window_level: 50.0
+
+  noise_model: signal_dependent_gaussian
+  noise_sigma_min: 0.01
+  noise_sigma_max: 0.06
+  noise_alpha: 0.02
+
+  edge_blur_sigma: 1.0
+  edge_low_threshold: 40
+  edge_high_threshold: 120
+
+model:
+  pretrained_model_name_or_path: null
+  vae_subfolder: vae
+  unet_subfolder: unet
+
+  latent_scaling_factor: 0.18215
+  latent_channels: 4
+  sample_size: 32
+  use_tiny_models: true
+
+  controlnet_conditioning_channels: 1
+  enable_ldct_condition: true
+
+  vae_frozen: true
+  unet_frozen: true
+
+train:
+  epochs: 2
+  learning_rate: 1.0e-4
+  weight_decay: 1.0e-2
+  grad_clip_norm: 1.0
+  mixed_precision: false
+  gradient_accumulation_steps: 1
+  save_every_steps: 50
+  log_every_steps: 5
+  num_train_timesteps: 1000
+  train_condition_projector: false
+  disable_edge_condition: false
+
+  cache_latents: false
+  latent_cache_dir: data/latent_cache_tiny
+
+eval:
+  num_eval_samples: 16
+  save_predictions: true
+  compute_fid: false
+  num_inference_steps: 30
+  inference_mode: img2img
+  strength: 0.35
+  controlnet_conditioning_scale: 1.0

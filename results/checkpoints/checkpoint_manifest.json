@@ -1,0 +1,18 @@
+{
+  "included": [
+    {
+      "name": "redcnn_best.pt",
+      "relative_path": "results/checkpoints/redcnn_best.pt",
+      "size_bytes": 22212555,
+      "note": "GitHub-compatible baseline checkpoint included in this release package."
+    }
+  ],
+  "omitted": [
+    {
+      "name": "controlnet_best.pt",
+      "original_relative_path": "outputs/egldm_lidc_hybrid_medium/checkpoints/controlnet_best.pt",
+      "size_bytes": 1511748223,
+      "note": "Omitted from the public package because it exceeds normal GitHub file size limits."
+    }
+  ]
+}

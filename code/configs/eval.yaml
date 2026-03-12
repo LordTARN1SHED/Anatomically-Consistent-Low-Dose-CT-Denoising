@@ -1,0 +1,12 @@
+seed: 42
+checkpoint_path: outputs/egldm/checkpoints/controlnet_last.pt
+train_config_path: configs/train.yaml
+output_dir: outputs/egldm/eval
+num_samples: 200
+save_predictions: true
+compute_fid: true
+dataset_split: test
+num_inference_steps: 50
+inference_mode: img2img
+strength: 0.35
+controlnet_conditioning_scale: 1.0

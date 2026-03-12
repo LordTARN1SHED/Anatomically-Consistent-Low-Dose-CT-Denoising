@@ -1,0 +1,43 @@
+3-minute talk script
+Title: Hybrid Edge-Guided Diffusion Refinement for Leakage-Free LDCT Denoising
+Estimated duration: about 2 minutes 20 seconds at 135 words per minute
+
+Speaker split
+- Zhexi Feng: Slides 1-2
+- Bingrui Zhang: Slides 3-5
+
+Slide 1 - Zhexi Feng
+Good evening. We study low-dose CT denoising under a strict question: can diffusion improve image quality without hallucinating anatomy? Our answer is yes, but only when diffusion is used conservatively, as a refiner around a strong deterministic RED-CNN anchor.
+
+Slide 2 - Zhexi Feng
+To make that claim credible, the protocol matters. We start from raw LIDC-IDRI DICOM, curate 243,957 valid CT slices from 1,010 patients, and enforce patient-level train, validation, and test splits. Because LIDC does not provide paired standard-dose and low-dose scans, we synthesize low-dose observations with a signal-dependent Gaussian corruption model. This gives us paired supervision without slice leakage.
+
+Transition - Zhexi Feng
+I will now hand it over to Bingrui for the model and the results.
+
+Slide 3 - Bingrui Zhang
+Our final model is hybrid. RED-CNN first produces a high-fidelity anchor. An edge-guided latent diffusion module then sees the noisy slice, neighboring slices, and a Canny edge map. At inference, anchor-aware blending and edge-adaptive fusion keep the final output close to the measured LDCT, so diffusion contributes only a small structured correction.
+
+Slide 4 - Bingrui Zhang
+The main quantitative result is on the held-out test split. Hybrid EG-LDM reaches 35.12 PSNR, 0.904 SSIM, and 0.0356 RMSE. RED-CNN reaches 35.02, 0.9028, and 0.0360. So the gain over the anchor is modest, but consistent. The standalone diffusion variants are much weaker, which tells us diffusion is not the best primary denoiser here.
+
+Slide 5 - Bingrui Zhang
+Qualitatively, the hybrid model preserves sharp boundaries while reducing local residual error. So our main takeaway is: edge guidance helps diffusion, but the strongest use of diffusion in this benchmark is conservative hybrid refinement. The main limitation is that the low-dose data are synthetic rather than truly paired clinical acquisitions. Thank you.
+
+
+
+Good evening, everyone. I'm Zhexi, and today we’re discussing a critical trade-off in medical imaging: how to reduce radiation in CT scans without sacrificing diagnostic integrity.
+
+Slide 1:
+
+The main challenge with Low-Dose CT denoising is 'hallucination.' While modern diffusion models are powerful, they risk creating anatomical structures that aren't actually there.
+
+Our solution is a Conservative Refiner. Instead of letting diffusion generate the image from scratch, we use it as a targeted refiner built around a stable, deterministic RED-CNN anchor. This ensures that every pixel remains tethered to reality.
+
+Slide 2:
+
+To make this claim credible, the protocol is everything. We used the LIDC-IDRI dataset, curating over 243,000 valid slices from 1,010 patients.
+
+Most importantly, we enforced a strict patient-level split. By synthesizing low-dose observations through a signal-dependent Gaussian model on raw DICOM data, we ensure our evidence is entirely leakage-free.
+
+I’ll now hand it over to Bingrui to walk through the architecture and results.

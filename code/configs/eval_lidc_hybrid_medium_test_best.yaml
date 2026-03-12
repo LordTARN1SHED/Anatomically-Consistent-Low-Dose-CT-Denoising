@@ -1,0 +1,16 @@
+seed: 42
+checkpoint_path: outputs/egldm_lidc_hybrid_medium/checkpoints/controlnet_best.pt
+train_config_path: configs/train_lidc_hybrid_medium.yaml
+output_dir: outputs/egldm_lidc_hybrid_medium/eval_test_best
+num_samples: 256
+save_predictions: true
+compute_fid: false
+dataset_split: test
+num_inference_steps: 1
+inference_mode: direct_x0
+controlnet_conditioning_scale: 0.8
+direct_timestep: 20
+output_blend_alpha: 1.0
+edge_adaptive_blend_strength: 0.15
+edge_adaptive_blur_sigma: 0.0
+anchor_blend_alpha: 0.03
